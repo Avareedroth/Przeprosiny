@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oficjalne Przeprosiny</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ee9ca7;
+      overflow: hidden;
+      position: relative;
+      padding-bottom: 70px; /* miejsce na audio */
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #startButton {
+      font-size: 3rem;
+      padding: 1rem 3rem;
+      background: #d6336c;
+      border: none;
+      border-radius: 15px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(214, 51, 108, 0.6);
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+
+    #startButton:hover {
+      background-color: #b32e5b;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      opacity: 0;
+      animation: fadeInContent 2s ease forwards;
+      animation-delay: 0s;
+      position: relative;
+    }
+
+    .card.visible {
+      animation-delay: 1s;
+    }
+
+    h1 {
+      color: #d6336c;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: slideDown 1s ease forwards;
+      animation-delay: 1s;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 2s;
+    }
+
+    .hearts {
+      font-size: 1.5rem;
+      color: #ff5e89;
+      position: absolute;
+    }
+
+    .heart1 { top: 20px; left: 20px; }
+    .heart2 { top: 20px; right: 20px; }
+    .heart3 { bottom: 20px; left: 20px; }
+    .heart4 { bottom: 20px; right: 20px; }
+
+    .button {
+      margin-top: 1.5rem;
+      background-color: #d6336c;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 3s;
+    }
+
+    .button:hover {
+      background-color: #c6285e;
+    }
+
+    audio {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      background: transparent;
+      box-shadow: none;
+      z-index: 1000;
+      outline: none;
+    }
+
+    @keyframes slideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInContent {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="startButton">PRZEPRASZAM 💗 </button>
+
+  <div class="card hidden" id="apologyCard">
+    <div class="hearts heart1">❤️</div>
+    <div class="hearts heart2">💖</div>
+    <div class="hearts heart3">💗</div>
+    <div class="hearts heart4">💕</div>
+
+    <h1>Oficjalne przeprosiny 💗</h1>
+    <p>
+      Alicjo Sisterko Korzonek,<br />
+      z głębi serca pragnę przeprosić za moje dzisiejsze czyny.<br />
+      Wiem, że zawiodłem Twoje zaufanie, i bardzo tego żałuję, nie chciałem.<br /><br />
+      Mam nadzieję, że znajdziesz w sobie siłę, by mi kiedyś wybaczyć. Najlepiej jeszcze dzisiaj.<br />
+      Zasługujesz na mój szacunek, dobroć i szczerość a przede wszystkim wsparcie – postaram się to udowodnić.<br /><br />
+      Z wyrazami skruchy,<br />
+      Kacper Słomian
+    </p>
+    <a class="button" href="podziekowania.html">Kontynuuj</a>
+  </div>
+
+  <audio id="backgroundAudio" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg" />
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+  </audio>
+
+  <script>
+    const startButton = document.getElementById('startButton');
+    const apologyCard = document.getElementById('apologyCard');
+    const audio = document.getElementById('backgroundAudio');
+
+    startButton.addEventListener('click', () => {
+      // Ukryj przycisk
+      startButton.classList.add('hidden');
+
+      // Pokaż kartę przeprosin z fadeIn
+      apologyCard.classList.remove('hidden');
+      apologyCard.classList.add('visible');
+
+      // Uruchom muzykę
+      audio.play().catch(() => {
+        // Niektóre przeglądarki wymagają interakcji, by odtworzyć dźwięk
+      });
+    });
+  </script>
+
+</body>
+</html>
